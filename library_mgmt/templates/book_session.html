@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <div class="card p-4">
+<h2 class="text-center mb-4">Book a Library Session</h2>
+<p>Sessions are automatically allocated for 4 hours.</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary w-100">confirm  Booking</button>
+</form>
+<br>
+<a href="{% url 'dashboard'%}">back to dashboard</a>
+{% endblock %}

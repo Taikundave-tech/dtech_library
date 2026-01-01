@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Staff Dashboard</h2>
+<a href="{% url 'reports' %}" class="btn btn-info mb-3">View Analytics</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Resource</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for session in sessions %}
+        <tr>
+            <td>{{ session.user.username }}</td>
+            <td>{{ session.resource.name }}</td>
+            <td>{{ session.start_time }}</td>
+            <td>{{ session.end_time }}</td>
+            <td><a href="{% url 'end_session' session.id %}" class="btn btn-sm btn-danger">Force Stop</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

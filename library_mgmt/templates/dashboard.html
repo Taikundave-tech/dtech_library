@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card p-4 mb-4 text-center">
+            <h3>Quick Actions</h3>
+            <a href="{% url 'book_session' %}" class="btn btn-primary btn-lg w-100 my-2">Book a Session</a>
+            {% if user.is_staff %}
+            <a href="{% url 'reports' %}" class="btn btn-success w-100">View System Reports</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card p-4">
+            <h3 class="mb-4">Current Active Sessions</h3>
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Resource</th>
+                            <th>Time Remaining</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for session in active_sessions %}
+                        <tr>
+                            <td><strong>{{ session.resource.name }}</strong></td>
+                            <td><span class="badge bg-info text-dark">Ends at {{ session.end_time|time:"H:i" }}</span></td>
+                            <td>
+                                <a href="{% url 'end_session' session.id %}" class="btn btn-danger btn-sm">Release Resource</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="3" class="text-center text-muted">No sessions active. Go book a PC or Seat!</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="{% url 'logout'%}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">logout</button>
+</form>
+
+<hr>
+
+<h3>your active sessions</h3>
+<ul>
+    {%for session in active_sessions%}
+    <li>
+        {{session.resource.name}} (Ends: {{session.end_time}})
+        <a href="{% url 'end_session' session.id %}" class="btn btn-sm btn-warning">End session</a>
+    </li>
+    {% empty %}
+    <li>no active sessions. <a href="{% url 'book_session' %}">Book one now!</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

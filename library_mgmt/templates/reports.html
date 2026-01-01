@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>System Reports & Analytics [cite: 44]</h2>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Total Users</div>
+            <div class="card-body">
+                <h1 class="card-title">{{ total_users }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Total Sessions (All Time)</div>
+            <div class="card-body">
+                <h1 class="card-title">{{ total_sessions }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-header">Active Now</div>
+            <div class="card-body">
+                <h1 class="card-title">{{ active_now }}</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+{% endblock %}

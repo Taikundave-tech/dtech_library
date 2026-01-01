@@ -1,0 +1,1 @@
+web: gunicorn dtech_library.wsgi
