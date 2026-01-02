@@ -20,9 +20,9 @@
                 <form action="{% url 'logout' %}" method="post" class="d-inline">{%csrf_token%}<button type="submit" class="btn btn-outline-light ms-2">logout</button></form>
             {% else %}
                 <a href="{% url 'login' %}" class="btn btn-sm btn-primary">Login</a>
+             <a href="{% url 'book_list' %}" class="nav-link">View Books</a>
             {% endif %}
         </div>  
-   <a href="{% url 'book_list' %}" class="nav-link">View Books</a>
     </nav>
 
     {% if messages %}
