@@ -1,17 +1,72 @@
-<div class="container mt-4">
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Animation for the Book Cards */
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .book-card {
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        background: #fff;
+        border: none;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        animation: slideInUp 0.5s ease forwards;
+    }
+
+    /* Hover effect: Card pops out and shadow deepens */
+    .book-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .status-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        border-radius: 20px;
+        padding: 5px 12px;
+        font-size: 0.8rem;
+    }
+</style>
+
+<div class="container py-5">
+    <h2 class="text-center mb-5 fw-bold">Library Collection</h2>
+    
     <div class="row">
         {% for book in books %}
         <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body">
-                    <h5 class="card-title">{{ book.title }}</h5>
-                    <p class="card-text text-muted">Author: {{ book.author }}</p>
-                    <span class="badge {% if book.available %}bg-success{% else %}bg-danger{% endif %}">
-                        {{ book.status }}
+            <div class="card h-100 book-card">
+                <div class="card-body p-4">
+                    <span class="status-badge {% if book.is_available %}bg-success text-white{% else %}bg-secondary text-white{% endif %}">
+                        {% if book.is_available %}Available{% else %}Borrowed{% endif %}
                     </span>
+                    
+                    <h5 class="card-title fw-bold mt-3">{{ book.title }}</h5>
+                    <p class="text-muted mb-2">by {{ book.author }}</p>
+                    <hr>
+                    <p class="small text-secondary">{{ book.description|truncatechars:100 }}</p>
+                    
+                    <div class="d-grid mt-3">
+                        <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">View Details</a>
+                    </div>
                 </div>
             </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p class="text-muted">No books found in the library yet.</p>
         </div>
         {% endfor %}
     </div>
 </div>
+{% endblock %}
