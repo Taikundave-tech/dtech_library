@@ -48,3 +48,7 @@ class Reservation(models.Model):
     reservation_date = models.DateTimeField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+class Book(models.Model):  # <--- MUST BE EXACTLY 'Book'
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=200)
+
