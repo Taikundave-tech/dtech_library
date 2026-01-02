@@ -8,7 +8,7 @@ from .models import LibrarySession, Resource, Reservation, User
 from django.shortcuts import render
 from .models import Book
 
-def book_list(request):
+def book_list_view(request):
     books = Book.objects.all()
     return render(request, 'book_list.html', {'books': books})
 
