@@ -35,11 +35,11 @@
 <div class="row justify-content-center">
     <div class="col-md-4">
         <div class="card p-4">
-<h2 class="text-center mb-4">Login to D-Tech Library</h2>
+<h2 class="text-center mb-4">Welcome back</h2>
 <form method="post">
     {%csrf_token%}
     {{ form.as_p}}
-    <button type="submit" class="btn btn-primary w-100">Login</button>
+    <button type="submit" class="btn btn-primary w-100 btn-animate">Login</button>
 </form>
 <p>Dont have an account? <a href="{% url 'register'%}">Register here</a></p>
 </div>
