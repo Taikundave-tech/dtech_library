@@ -21,7 +21,8 @@
             {% else %}
                 <a href="{% url 'login' %}" class="btn btn-sm btn-primary">Login</a>
             {% endif %}
-        </div>
+        </div>  
+   <a href="{% url 'book_list' %}" class="nav-link">View Books</a>
     </nav>
 
     {% if messages %}
