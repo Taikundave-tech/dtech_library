@@ -32,5 +32,6 @@ urlpatterns = [
     path('end-session/<int:session_id>/',views.end_session,name='end_session'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('reports/',views.reports,name='reports'),
+    path('books/', views.book_list_view, name='book_list'),
 ]
 
