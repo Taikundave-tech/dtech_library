@@ -5,6 +5,12 @@ from django.contrib import messages
 from django.utils import timezone
 from .forms import UserRegisterForm, SessionBookForm, ReservationForm
 from .models import LibrarySession, Resource, Reservation, User
+from django.shortcuts import render
+from .models import Book
+
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, 'book_list.html', {'books': books})
 
 def register(request):
     if request.method == 'POST':
